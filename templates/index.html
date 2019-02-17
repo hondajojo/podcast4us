@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8"/>
+    <title>Podcast Factory</title>
+    <meta name="description" content="喜马拉雅 ximalaya pdcast xml rss"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="stylesheet" href="{{static_url('bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{static_url('all.css')}}"/>
+</head>
+<body>
+<div class="site-wrapper">
+    <header class="site-header">
+        <div class="site-title"><a href="/">Podcast Factory</a></div>
+    </header>
+    <div class="content">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="喜马拉雅专辑ID">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go</button>
+    </span>
+        </div>
+        <br/>
+        <div id='board' class="gittip alert alert-info hide" style="padding: 20px;">
+        </div>
+         <p>
+             如：<a>https://www.ximalaya.com/yule/5879804/</a> 的专辑ID为5879804
+        </p>
+    </div>
+    <footer class="site-footer">
+        <div class="powered-by">
+            Powered by <a href="http://twitter.com/maijver" target="_blank">maijver</a>
+        </div>
+    </footer>
+    <script src="{{static_url('jquery.min.js')}}"></script>
+    <script src="{{static_url('bootstrap.min.js')}}"></script>
+    <script>
+            function isDigit(s) {
+                var patrn=/^[0-9]{1,20}$/;
+                if (!patrn.exec(s)) return false;
+                return true;
+            };
+
+            $(function() {
+                $('.input-group').on('click', 'button', function() {
+                    var input = $('input').val();
+                    if (isDigit(input)) {
+                        var a = $("<a target='_blank' href='http://{{ host }}/xmly/"+input+".xml'>http://{{ host }}/xmly/"+input+".xml</a>");
+                        var p = $("<p>RSS:<br/></p>");
+                        p.append(a);
+                    } else {
+                        var p = $('<p>请输入正确的喜马拉雅FM专辑ID</p>');
+                    };
+                    var board = $('#board');
+                    board.empty();
+                    board.append(p);
+                    board.removeClass('hide');
+                });
+            });
+    </script>
+</div>
+</body>
+</html>

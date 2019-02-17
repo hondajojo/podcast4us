@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <atom:link href="{{ url }}" rel="self" type="application/rss+xml"/>
+        <title>{{ title }}</title>
+        <description>{{ description }}</description>
+        <itunes:subtitle>{{ title }}</itunes:subtitle>
+        <link>{{ link }}</link>
+        <pubDate>{{ pubdate }} +0800</pubDate>
+        <language>zh-CN</language>
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:image href="{{ pic }}" />
+        <itunes:category text="{{ category }}"/>
+        <itunes:owner>
+            <itunes:name>twitter@maijver</itunes:name>
+            <itunes:email>maijver@gmail.com</itunes:email>
+        </itunes:owner>
+        {% for item in items %}
+        <item>
+            <guid>{{ item['guid'] }}</guid>
+            <link>{{ item['link'] }}</link>
+            <title><![CDATA[{{ item['title'] }}]]></title>
+            <description>{{ item['content'] }}</description>
+            <itunes:image href="{{ item['pic'] }}" />
+            <pubDate>{{ item['created'] }} +0800</pubDate>
+            <enclosure url="{{ item['mp3_url'] }}" type="audio/mpeg" length="{{ item['length'] }}"/>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>
