@@ -35,7 +35,7 @@ class XimalayaHandler(tornado.web.RequestHandler):
                 retitle = album['title']
                 category = album['categoryName']
                 description = album['intro']
-                pic = album['coverOrigin']
+                pic = album.get('coverOrigin') or album.get('coverLarge')
                 items = []
                 for card in tracks:
                     item = {}
@@ -54,7 +54,7 @@ class XimalayaHandler(tornado.web.RequestHandler):
                         item['guid'] = item['link']
                         item['author'] = card['nickname']
                         item['mp3_url'] = card['playUrl64']
-                        item['length'] = card['duration']
+                        item['duration'] = str(datetime.timedelta(seconds=int(card['duration'])))
                         item['pic'] = card['coverMiddle']
                         if card.get('price'):
                             item['title'] = u"{}(试听)".format(title)

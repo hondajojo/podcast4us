@@ -22,8 +22,9 @@
             <title><![CDATA[{{ item['title'] }}]]></title>
             <description>{{ item['content'] }}</description>
             <itunes:image href="{{ item['pic'] }}" />
+            <itunes:duration>{{ item['duration'] }}</itunes:duration>
             <pubDate>{{ item['created'] }} +0800</pubDate>
-            <enclosure url="{{ item['mp3_url'] }}" type="audio/mpeg" length="{{ item['length'] }}"/>
+            <enclosure url="{{ item['mp3_url'] }}" type="audio/mpeg"/>
         </item>
         {% endfor %}
     </channel>
