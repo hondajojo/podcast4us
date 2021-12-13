@@ -19,7 +19,7 @@ iso8601==0.1.12
 itsdangerous==1.1.0
 Jinja2==2.10.3
 leancloud==2.1.14
-lxml==4.4.1
+lxml==4.6.5
 MarkupSafe==1.1.1
 Pygments==2.4.2
 pyquery==1.4.0
